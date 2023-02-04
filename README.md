@@ -1,4 +1,4 @@
-# Shop DEMO
+# DWH DEMO
 
 DWHベンチマークのDocker Build
 
