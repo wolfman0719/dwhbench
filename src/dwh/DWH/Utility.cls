@@ -56,4 +56,24 @@ ClassMethod LoadDataToShard(count As %Integer)
   write "elapsed time = ",(end - start),!
 }
 
+ClassMethod SetupLocal(pDir As %String) As %Status [ Language = objectscript ]
+{
+  set status = $$$OK
+
+  set os = $system.Version.GetOS()
+  
+  if os = "Windows" {
+    set delim = "\"
+  }
+  else {
+    set delim = "/"
+  }
+  
+  do $System.OBJ.LoadDir(pDir_delim_"src","ck",,1)
+  do ##class(DWH.Patient).%KillExtent()
+  Do ##class(DWH.Patient).Populate(5000000)
+  Do $SYSTEM.SQL.TuneSchema("DWH")
+  quit status
+}
+
 }
