@@ -16,6 +16,7 @@ Property TotalBill As %Integer(POPSPEC = "##Class(Sample.PopulateUtils).Bill()")
 Index AgeIndex1 On Age [ Type = bitmap ];
 
 Index CityIndex1 On City [ Type = bitmap ];
+//Index CityIndex1 On City [ Type = columnar ];
 
 Index NameIndex1 On Name [ Type = bitmap ];
 
@@ -24,6 +25,7 @@ Index PracticeIndex1 On Practice [ Type = bitmap ];
 Index SexIndex1 On Sex [ Type = bitmap ];
 
 Index TotalBillIndex1 On TotalBill [ Type = bitslice ];
+//Index TotalBillIndex1 On TotalBill [ Type = columnar ];
 
 Storage Default
 {
