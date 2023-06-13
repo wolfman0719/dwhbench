@@ -1,7 +1,7 @@
 ARG IMAGE=store/intersystems/iris-community-arm64:2021.1.0.215.3
-ARG IMAGE=store/intersystems/iris-community-arm64:2021.2.0.649.0
+ARG IMAGE=store/intersystems/iris-community-arm64:2023.1.0.235.1
 ARG IMAGE=store/intersystems/iris-community:2021.1.0.215.3
-ARG IMAGE=store/intersystems/iris-community:2021.2.0.649.0
+ARG IMAGE=store/intersystems/iris-community:2023.1.0.235.1
 FROM $IMAGE
 
 ARG COMMIT_ID="dwhbench"
