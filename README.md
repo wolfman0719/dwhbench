@@ -12,28 +12,29 @@ DWHベンチマークのDocker Build
 
 #### 関連クラスのロード
 
-ターミナルでログイン
+##### ターミナルでログイン
 
 ```
->zn "FAQ"
->set pDir = "c:\git\FAQDEMO\FAQ"
->Do $system.OBJ.Load(pDir_"\KB\Setup.cls","ck")
+>zn "USER"
+>set io = ##class(%SYS.NLS.Device).SetIO("UTF8")
+>// ファイル一式をc:\git\dwh配下に置いてあると想定
+>Do $system.OBJ.LoadDir("c:\git\dwh\","ck",,1)
+>Do ##class(DWH.Patient).Populate(5000000)
+>Do $SYSTEM.SQL.TuneSchema("DWH")
 ```
-
-### SetupLocalの実行
-
-```
->do ##class(KB.Setup).SetupLocal(pDir)
-```
-
-
 
 ## 起動方法
 
 ### 管理ポータル
+
+ローカルインストールの場合は、その環境に合わせたポート番号を指定
 
 [localhost:52773/csp/sys/%25CSP.Portal.Home.zen?IRISUsername=_system&IRISPassword=SYS](http://localhost:52773/csp/sys/%25CSP.Portal.Home.zen?IRISUsername=_system&IRISPassword=SYS)
 
 ### Webターミナル
 
 [localhost:52773/terminal/?IRISUsername=_system&IRISPassword=SYS](http://localhost:52773/terminal/?IRISUsername=_system&IRISPassword=SYS)
+
+### ベンチマーク実施
+
+ベンチマークはエクセルファイルに記載されている各SQLコマンドを実行して計測
