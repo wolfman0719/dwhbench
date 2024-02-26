@@ -15,7 +15,9 @@ Property TotalBill As %Integer(POPSPEC = "##Class(Sample.PopulateUtils).Bill()")
 
 Index AgeIndex1 On Age [ Type = bitmap ];
 
+// columnar のベンチマークを実施する際には、以下のインデックス定義をコメント化する
 Index CityIndex1 On City [ Type = bitmap ];
+// columnar のベンチマークを実施する際には、以下のインデックス定義をコメントアウト
 //Index CityIndex1 On City [ Type = columnar ];
 
 Index NameIndex1 On Name [ Type = bitmap ];
@@ -24,7 +26,9 @@ Index PracticeIndex1 On Practice [ Type = bitmap ];
 
 Index SexIndex1 On Sex [ Type = bitmap ];
 
+// columnar のベンチマークを実施する際には、以下のインデックス定義をコメント化する
 Index TotalBillIndex1 On TotalBill [ Type = bitslice ];
+// columnar のベンチマークを実施する際には、以下のインデックス定義をコメントアウト
 //Index TotalBillIndex1 On TotalBill [ Type = columnar ];
 
 Storage Default
