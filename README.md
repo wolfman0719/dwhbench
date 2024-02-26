@@ -8,6 +8,25 @@ DWHベンチマークのDocker Build
 ### Build & Run
 * ```docker-compose up -d --build```
 
+### ローカルインストール(WindowsやMacOSにインストールしたIRISでセットアップする)
+
+#### 関連クラスのロード
+
+ターミナルでログイン
+
+```
+>zn "FAQ"
+>set pDir = "c:\git\FAQDEMO\FAQ"
+>Do $system.OBJ.Load(pDir_"\KB\Setup.cls","ck")
+```
+
+### SetupLocalの実行
+
+```
+>do ##class(KB.Setup).SetupLocal(pDir)
+```
+
+
 
 ## 起動方法
 
