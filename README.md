@@ -38,3 +38,14 @@ DWHベンチマークのDocker Build
 ### ベンチマーク実施
 
 ベンチマークはエクセルファイル（query-result.xlsx）に記載されている各SQLコマンドを実行して計測
+
+#### 注意事項
+
+bitsliceベンチマークとcolumnarベンチマークを実施する際には、DWH.Patient.clsのインデックス定義を変更してコンパイルする。
+
+コンパイル後、以下を実行し、その後でベンチマークを実施する
+
+```
+>zn "USER"
+>Do ##class(DWH.Patient).%BuildIndices()
+```
