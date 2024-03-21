@@ -17,8 +17,9 @@ DWHベンチマークのDocker Build
 ```
 >zn "USER"
 >set io = ##class(%SYS.NLS.Device).SetIO("UTF8")
->// ファイル一式をc:\git\dwh\src配下に置いてあると想定
->Do $system.OBJ.LoadDir("c:\git\dwh\src","ck",,1)
+>// ファイル一式をc:\git\dwhbench\src配下に置いてあると想定
+>do $system.OBJ.Load("c:\get\dwhbench\src\dwh\bitutil.inc")
+>Do $system.OBJ.LoadDir("c:\git\dwhbench\src","ck",,1)
 >Do ##class(DWH.Patient).Populate(5000000)
 >Do $SYSTEM.SQL.TuneSchema("DWH")
 ```
