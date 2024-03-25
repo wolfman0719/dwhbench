@@ -5,6 +5,7 @@ Do ##class(Config.NLS.Locales).Install("jpuw")
 
 zn "USER"
 set io = ##class(%SYS.NLS.Device).SetIO("UTF8")
+do $system.OBJ.Load("/intersystems/iris/dwh/bitutil.inc")
 Do $system.OBJ.LoadDir("/intersystems/iris/dwh/","ck",,1)
 Do ##class(DWH.Patient).Populate(5000000)
 Do $SYSTEM.SQL.TuneSchema("DWH")
