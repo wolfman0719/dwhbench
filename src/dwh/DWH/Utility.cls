@@ -5,21 +5,21 @@ Class DWH.Utility
 
 ClassMethod BuildIndex1(sortbegin As %Boolean)
 {
-	kill ^DWH.PatientIdx
-	h 5
-	set start = $piece($zts,",",2)
-	set id = ""
-	set:sortbegin sts = $sortbegin(^DWH.PatientIdx)
-	for {
-		set id = $Order(^DWH.PatientD(id))
-		if id = "" quit
-		set record = ^DWH.PatientD(id)
-		set city = $list(record,3)
-		set ^DWH.PatientIdx(city,id) = ""		
-	}
-	set:sortbegin sts = $sortend(^DWH.PatientIdx)
-	set end = $piece($zts,",",2)
-	write "elasped time = ",end - start,!
+  kill ^DWH.PatientIdx
+  h 5
+  set start = $piece($zts,",",2)
+  set id = ""
+  set:sortbegin sts = $sortbegin(^DWH.PatientIdx)
+  for {
+    set id = $Order(^DWH.PatientD(id))
+    if id = "" quit
+    set record = ^DWH.PatientD(id)
+    set city = $list(record,3)
+    set ^DWH.PatientIdx(city,id) = ""		
+  }
+  set:sortbegin sts = $sortend(^DWH.PatientIdx)
+  set end = $piece($zts,",",2)
+  write "elasped time = ",end - start,!
 }
 
 ClassMethod CreateShard()
