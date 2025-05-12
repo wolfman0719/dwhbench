@@ -9,29 +9,29 @@ Property %openflag As %Boolean [ InitialExpression = "0", Private ];
 
 Method %OpenCursor(city As %String, age As %Integer) As %Library.Status
 {
-	set cdgn = "^DWH.PatientI(""CityIndex1"","" "_city_""")"
-	set adgn = "^DWH.PatientI(""AgeIndex1"","_age_")"
-	set result = "^||result"
-	do ##class(DWH.BitOperation).bitand(cdgn,adgn,.result)
-	set ..Count = ##class(DWH.BitOperation).bitcount(result)
-	set ..%openflag = 1
-	set ..%SQLCode = 0
-	quit $$$OK
+  set cdgn = "^DWH.PatientI(""CityIndex1"","" "_city_""")"
+  set adgn = "^DWH.PatientI(""AgeIndex1"","_age_")"
+  set result = "^||result"
+  do ##class(DWH.BitOperation).bitand(cdgn,adgn,.result)
+  set ..Count = ##class(DWH.BitOperation).bitcount(result)
+  set ..%openflag = 1
+  set ..%SQLCode = 0
+  quit $$$OK
 }
 
 Method %Next(ByRef sc As %Status) As %Integer
 {
-	if ..%openflag = 0  {
-		quit 0
-	}
-	set ..%openflag = 0
-	quit $$$OK
+  if ..%openflag = 0  {
+    quit 0
+  }
+  set ..%openflag = 0
+  quit $$$OK
 }
 
 Method %CloseCursor() As %Status
 {
  
-	Quit $$$OK
+  Quit $$$OK
 }
 
 /// xDBCクライアントでのテスト法:
@@ -45,11 +45,11 @@ Method %CloseCursor() As %Status
 /// 
 ClassMethod GetResults(city As %String, age As %Integer) As %Status [ ReturnResultsets, SqlProc ]
 {
-	if '$isobject($Get(%sqlcontext)) { set %sqlcontext = ##class(%Library.ProcedureContext).%New() }
-	set rs = ..%New($system.SQL.GetSelectMode(),city,age)
-	#; コンテキストオブジェクトに結果セットを設定
-	do %sqlcontext.AddResultSet(rs)
-	quit $$$OK
+  if '$isobject($Get(%sqlcontext)) { set %sqlcontext = ##class(%Library.ProcedureContext).%New() }
+  set rs = ..%New($system.SQL.GetSelectMode(),city,age)
+  #; コンテキストオブジェクトに結果セットを設定
+  do %sqlcontext.AddResultSet(rs)
+  quit $$$OK
 }
 
 }
