@@ -8,27 +8,27 @@ Property %openflag As %Boolean [ InitialExpression = "0", Private ];
 
 Method %OpenCursor(city As %String) As %Library.Status
 {
-	set bsgn = "^DWH.PatientI(""TotalBillIndex1"")"
-	set cdgn = "^DWH.PatientI(""CityIndex1"","" "_city_""")"
-	set ..subtotal = ##class(DWH.BitOperation).bitslicesum(bsgn,cdgn)
-	set ..%openflag = 1
-	set ..%SQLCode = 0
-	quit $$$OK
+  set bsgn = "^DWH.PatientI(""TotalBillIndex1"")"
+  set cdgn = "^DWH.PatientI(""CityIndex1"","" "_city_""")"
+  set ..subtotal = ##class(DWH.BitOperation).bitslicesum(bsgn,cdgn)
+  set ..%openflag = 1
+  set ..%SQLCode = 0
+  quit $$$OK
 }
 
 Method %Next(ByRef sc As %Status) As %Integer
 {
-	if ..%openflag = 0  {
-		quit 0
-	}
-	set ..%openflag = 0
-	quit $$$OK
+  if ..%openflag = 0  {
+    quit 0
+  }
+  set ..%openflag = 0
+  quit $$$OK
 }
 
 Method %CloseCursor() As %Status
 {
  
-	Quit $$$OK
+  Quit $$$OK
 }
 
 /// xDBCクライアントでのテスト法:
@@ -42,11 +42,11 @@ Method %CloseCursor() As %Status
 /// 
 ClassMethod GetResults(city As %String) As %Status [ ReturnResultsets, SqlProc ]
 {
-	if '$isobject($Get(%sqlcontext)) { set %sqlcontext = ##class(%Library.ProcedureContext).%New() }
-	set rs = ..%New($system.SQL.GetSelectMode(),city)
-	#; コンテキストオブジェクトに結果セットを設定
-	do %sqlcontext.AddResultSet(rs)
-	quit $$$OK
+  if '$isobject($Get(%sqlcontext)) { set %sqlcontext = ##class(%Library.ProcedureContext).%New() }
+  set rs = ..%New($system.SQL.GetSelectMode(),city)
+  #; コンテキストオブジェクトに結果セットを設定
+  do %sqlcontext.AddResultSet(rs)
+  quit $$$OK
 }
 
 }
